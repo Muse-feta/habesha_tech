@@ -1,6 +1,12 @@
 import React from 'react'
+import {
+  getBlogPosts
+} from "@/lib/sanity/fetchQueries";
+import { urlForImage } from "@/lib/sanity/image"; 
 
-function Blogs() {
+async function Blogs() {
+    const blogPosts = await getBlogPosts();
+  
   return (
     <div>
       <section
@@ -21,7 +27,7 @@ function Blogs() {
             </div>
             <div className="col-lg-auto d-none d-lg-block">
               <div className="sec-btn">
-                <a href="blog.html" className="th-btn style4">
+                <a href="/blog" className="th-btn style4">
                   View All Post
                 </a>
               </div>
@@ -34,174 +40,49 @@ function Blogs() {
               data-slider-options='{"breakpoints":{"0":{"slidesPerView":1},"576":{"slidesPerView":"1"},"768":{"slidesPerView":"2"},"992":{"slidesPerView":"2"},"1200":{"slidesPerView":"3"}}}'
             >
               <div className="swiper-wrapper">
-                <div className="swiper-slide">
-                  <div className="blog-card">
-                    <div className="blog-img">
-                      <img
-                        src="assets/img/blog/blog_1_1.jpg"
-                        alt="blog image"
-                      />
-                    </div>
-                    <div className="blog-content">
-                      <div className="blog-meta">
-                        <a href="blog.html">
-                          <i className="fal fa-user"></i>By Mediax
-                        </a>
-                        <a href="blog.html">
-                          <i className="fal fa-calendar"></i>15 March, 2024
+                {blogPosts.map((post: any) => (
+                  <div className="swiper-slide" key={post.slug.current}>
+                    <div className="blog-card">
+                      <div className="blog-img">
+                        <img
+                          src={
+                            urlForImage(post.mainImage)
+                              ?.width(400)
+                              .height(250)
+                              .url() || ""
+                          }
+                          alt={post.title || ""}
+                        />
+                      </div>
+                      <div className="blog-content">
+                        <div className="blog-meta">
+                          <a href={`/blog/${post.slug.current}`}>
+                            <i className="fal fa-user"></i>By{" "}
+                            {post.author?.name || "Mamigas"}
+                          </a>
+                          <a href={`/blog/${post.slug.current}`}>
+                            <i className="fal fa-calendar"></i>
+                            {new Date(post.publishedAt).toLocaleDateString() ||
+                              ""}
+                          </a>
+                        </div>
+                        <h3 className="box-title">
+                          <a href={`/blog/${post.slug.current}`}>
+                            {post.title && post.title.length > 50
+                              ? post.title.slice(0, 50) + "..."
+                              : post.title || ""}
+                          </a>
+                        </h3>
+                        <a
+                          href={`/blog/${post.slug.current}`}
+                          className="th-btn btn-sm"
+                        >
+                          Read More
                         </a>
                       </div>
-                      <h3 className="box-title">
-                        <a href="blog-details.html">
-                          How Business Is Taking Over & What to Do About It
-                        </a>
-                      </h3>
-                      <a href="blog-details.html" className="th-btn btn-sm">
-                        Read More
-                      </a>
                     </div>
                   </div>
-                </div>
-                <div className="swiper-slide">
-                  <div className="blog-card">
-                    <div className="blog-img">
-                      <img
-                        src="assets/img/blog/blog_1_2.jpg"
-                        alt="blog image"
-                      />
-                    </div>
-                    <div className="blog-content">
-                      <div className="blog-meta">
-                        <a href="blog.html">
-                          <i className="fal fa-user"></i>By Mediax
-                        </a>
-                        <a href="blog.html">
-                          <i className="fal fa-calendar"></i>16 March, 2024
-                        </a>
-                      </div>
-                      <h3 className="box-title">
-                        <a href="blog-details.html">
-                          Health vs. Wealth Navigate Business in Medicine
-                        </a>
-                      </h3>
-                      <a href="blog-details.html" className="th-btn btn-sm">
-                        Read More
-                      </a>
-                    </div>
-                  </div>
-                </div>
-                <div className="swiper-slide">
-                  <div className="blog-card">
-                    <div className="blog-img">
-                      <img
-                        src="assets/img/blog/blog_1_3.jpg"
-                        alt="blog image"
-                      />
-                    </div>
-                    <div className="blog-content">
-                      <div className="blog-meta">
-                        <a href="blog.html">
-                          <i className="fal fa-user"></i>By Mediax
-                        </a>
-                        <a href="blog.html">
-                          <i className="fal fa-calendar"></i>17 March, 2024
-                        </a>
-                      </div>
-                      <h3 className="box-title">
-                        <a href="blog-details.html">
-                          Preserving Care Strategy Amidst Food Changes
-                        </a>
-                      </h3>
-                      <a href="blog-details.html" className="th-btn btn-sm">
-                        Read More
-                      </a>
-                    </div>
-                  </div>
-                </div>
-                <div className="swiper-slide">
-                  <div className="blog-card">
-                    <div className="blog-img">
-                      <img
-                        src="assets/img/blog/blog_1_4.jpg"
-                        alt="blog image"
-                      />
-                    </div>
-                    <div className="blog-content">
-                      <div className="blog-meta">
-                        <a href="blog.html">
-                          <i className="fal fa-user"></i>By Mediax
-                        </a>
-                        <a href="blog.html">
-                          <i className="fal fa-calendar"></i>19 March, 2024
-                        </a>
-                      </div>
-                      <h3 className="box-title">
-                        <a href="blog-details.html">
-                          Healthcare Tips Navigating Business & Patient Care
-                        </a>
-                      </h3>
-                      <a href="blog-details.html" className="th-btn btn-sm">
-                        Read More
-                      </a>
-                    </div>
-                  </div>
-                </div>
-                <div className="swiper-slide">
-                  <div className="blog-card">
-                    <div className="blog-img">
-                      <img
-                        src="assets/img/blog/blog_1_1.jpg"
-                        alt="blog image"
-                      />
-                    </div>
-                    <div className="blog-content">
-                      <div className="blog-meta">
-                        <a href="blog.html">
-                          <i className="fal fa-user"></i>By Mediax
-                        </a>
-                        <a href="blog.html">
-                          <i className="fal fa-calendar"></i>15 March, 2024
-                        </a>
-                      </div>
-                      <h3 className="box-title">
-                        <a href="blog-details.html">
-                          Strategies Against Corporate Intrusion in Healthcare
-                        </a>
-                      </h3>
-                      <a href="blog-details.html" className="th-btn btn-sm">
-                        Read More
-                      </a>
-                    </div>
-                  </div>
-                </div>
-                <div className="swiper-slide">
-                  <div className="blog-card">
-                    <div className="blog-img">
-                      <img
-                        src="assets/img/blog/blog_1_2.jpg"
-                        alt="blog image"
-                      />
-                    </div>
-                    <div className="blog-content">
-                      <div className="blog-meta">
-                        <a href="blog.html">
-                          <i className="fal fa-user"></i>By Mediax
-                        </a>
-                        <a href="blog.html">
-                          <i className="fal fa-calendar"></i>16 March, 2024
-                        </a>
-                      </div>
-                      <h3 className="box-title">
-                        <a href="blog-details.html">
-                          Transform Your Nutrition with Organic Meal
-                        </a>
-                      </h3>
-                      <a href="blog-details.html" className="th-btn btn-sm">
-                        Read More
-                      </a>
-                    </div>
-                  </div>
-                </div>
+                ))}
               </div>
             </div>
             <button

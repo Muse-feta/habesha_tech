@@ -9,6 +9,7 @@ export default defineType({
       name: 'title',
       title: 'Title',
       type: 'string',
+      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'slug',
@@ -18,13 +19,14 @@ export default defineType({
         source: 'title',
         maxLength: 96,
       },
+      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'excerpt',
       title: 'Excerpt',
       type: 'text',
       description: 'Short summary for blog listing preview',
-      validation: (Rule) => Rule.max(200),
+      validation: (Rule) => Rule.max(200).required(),
     }),
 
     defineField({
@@ -34,23 +36,27 @@ export default defineType({
       options: {
         hotspot: true,
       },
+      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'categories',
       title: 'Categories',
       type: 'array',
       of: [{type: 'reference', to: {type: 'category'}}],
+      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'publishedAt',
       title: 'Published at',
       type: 'datetime',
       initialValue: () => new Date().toISOString(),
+      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'body',
       title: 'Body',
       type: 'blockContent',
+      validation: (Rule) => Rule.required(),
     }),
   ],
 
@@ -61,7 +67,7 @@ export default defineType({
       media: 'mainImage',
     },
     prepare(selection) {
-      const { title, date, media } = selection
+      const {title, date, media} = selection
 
       const formattedDate = date
         ? new Intl.DateTimeFormat('en-GB', {
@@ -77,6 +83,5 @@ export default defineType({
         subtitle: `Published at ${formattedDate}`,
       }
     },
-  
   },
 })

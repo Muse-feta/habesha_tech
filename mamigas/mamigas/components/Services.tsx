@@ -194,8 +194,8 @@ function Services() {
         <div className="mt-5 pt-2 space-extra-bottom">
           <p className="round-text">
             <span className="text"
-              >You Get Our 20+ More services...
-              <a href="service.html" className="line-btn"
+              >You Get Our More services...
+              <a href="/service" className="line-btn"
                 >Explore All Services</a>
                 </span>
           </p>

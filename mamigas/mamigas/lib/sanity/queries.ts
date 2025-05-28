@@ -12,6 +12,16 @@ const fetchBlogPosts =
 }
 `);
 
+const fetchSingleBlog = defineQuery(`
+  *[_type == "post" && slug.current == $slug][0]{
+    title,
+    slug,
+    publishedAt,
+    mainImage,
+    body,
+  }
+  `);
+
 // Query for Recent Posts (limit 3)
 const fetchRecentPosts =
   defineQuery(`*[_type == "post"] | order(publishedAt desc)[0...3] {
@@ -40,4 +50,22 @@ const fetchCategories = defineQuery(`*[_type == "category"] | order(title asc) {
 }
 `);
 
-export { fetchBlogPosts, fetchRecentPosts,fetchPostsByCategory, fetchCategories };
+const fetchPostsByCategorySlug = defineQuery(`
+  *[_type == "post" && $slug in categories[]->slug.current] | order(publishedAt desc) {
+    title,
+    slug,
+    mainImage,
+    excerpt,
+    publishedAt,
+    "categories": categories[]->title
+  }
+`);
+
+export {
+  fetchBlogPosts,
+  fetchRecentPosts,
+  fetchPostsByCategory,
+  fetchCategories,
+  fetchSingleBlog,
+  fetchPostsByCategorySlug,
+};

@@ -8,7 +8,7 @@ function page() {
     <div>
         <Breadcumb title="Our Latest Blog's" subtitle="Blog"/>
         <MainBlog/>
-        {/* <Script src="/assets/js/main.js" strategy="afterInteractive" /> */}
+        <Script src="/assets/js/main.js" strategy="afterInteractive" />
     </div>
   )
 }
