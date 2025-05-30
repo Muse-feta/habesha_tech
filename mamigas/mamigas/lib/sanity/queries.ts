@@ -61,6 +61,65 @@ const fetchPostsByCategorySlug = defineQuery(`
   }
 `);
 
+const fetchAllProducts = defineQuery(`*[_type == "product"]{
+  _id,
+  title,
+  slug,
+  description,
+  price,
+  stock,
+  "imageUrl": image.asset->url,
+  publishedAt,
+  category->{
+    _id,
+    title
+  }
+} | order(publishedAt desc)`);
+
+const fetchProductCategories = defineQuery(`
+  *[_type == "productCategory"]{
+  _id,
+  title,
+  slug,
+  description
+} | order(title asc)
+`);
+
+const fetchSingleProduct = defineQuery(`
+  *[_type == "product" && slug.current == $slug][0]{
+  _id,
+  title,
+  slug,
+  image,
+  description,
+  price,
+  stock,
+  publishedAt,
+  "category": category->{
+    _id,
+    title
+  }
+}
+`);
+
+const fetchProductsByCategory =
+  defineQuery(`*[_type == "product" && category->slug.current == $categorySlug]{
+  _id,
+  title,
+  slug,
+  image,
+  description,
+  price,
+  stock,
+  publishedAt,
+  "category": category->{
+    _id,
+    title,
+    slug
+  }
+}
+`);
+
 export {
   fetchBlogPosts,
   fetchRecentPosts,
@@ -68,4 +127,8 @@ export {
   fetchCategories,
   fetchSingleBlog,
   fetchPostsByCategorySlug,
+  fetchAllProducts,
+  fetchProductCategories,
+  fetchSingleProduct,
+  fetchProductsByCategory
 };

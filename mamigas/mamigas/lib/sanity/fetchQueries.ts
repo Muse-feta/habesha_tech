@@ -6,6 +6,8 @@ import {
   fetchCategories,
   fetchSingleBlog,
   fetchPostsByCategorySlug,
+  fetchAllProducts,
+  fetchProductCategories,
 } from "./queries";
 
 // Fetch blog posts
@@ -37,3 +39,15 @@ export const getCategories = async () => {
 export const getBlogsByCategory = async (slug: string) => {
   return await client.fetch(fetchPostsByCategorySlug, { slug });
 };
+
+export const getAllProducts = async () => {
+  return await client.fetch(fetchAllProducts);
+};
+
+export const getProductsByCategory = async (categorySlug: string) => {
+  return await client.fetch(fetchPostsByCategorySlug, { categorySlug }); 
+};
+
+export const getAllProdutsCategories = async () => {
+  return await client.fetch(fetchProductCategories);
+}

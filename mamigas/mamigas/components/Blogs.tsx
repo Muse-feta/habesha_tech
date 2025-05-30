@@ -1,11 +1,11 @@
 import React from 'react'
-import {
-  getBlogPosts
-} from "@/lib/sanity/fetchQueries";
+import { getBlogPosts, getAllProducts } from "@/lib/sanity/fetchQueries";
 import { urlForImage } from "@/lib/sanity/image"; 
 
 async function Blogs() {
     const blogPosts = await getBlogPosts();
+    const products = await getAllProducts();
+    console.log(products);
   
   return (
     <div>

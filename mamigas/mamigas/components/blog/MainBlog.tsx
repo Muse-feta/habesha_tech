@@ -22,8 +22,8 @@ async function MainBlog() {
                   <div className="blog-img">
                     <a href={`/blog/${post.slug.current}`}>
                       <img
-                        src={urlForImage(post.mainImage).url() || ''}
-                        alt={post.title || ''}
+                        src={urlForImage(post.mainImage).url() || ""}
+                        alt={post.title || ""}
                       />
                     </a>
                   </div>
@@ -34,13 +34,16 @@ async function MainBlog() {
                       </a>
                       <a href={`/blog/${post.slug.current}`}>
                         <i className="fal fa-calendar"></i>
-                        {new Date(post.publishedAt).toLocaleDateString() || 'Unknown'}
+                        {new Date(post.publishedAt).toLocaleDateString() ||
+                          "Unknown"}
                       </a>
                     </div>
                     <h2 className="blog-title">
-                      <a href={`/blog/${post.slug.current}`}>{post.title || ''}</a>
+                      <a href={`/blog/${post.slug.current}`}>
+                        {post.title || ""}
+                      </a>
                     </h2>
-                    <p className="blog-text">{post.excerpt || ''}</p>
+                    <p className="blog-text">{post.excerpt || ""}</p>
                     <a
                       href={`/blog/${post.slug.current}`}
                       className="th-btn btn-sm"
@@ -49,6 +52,7 @@ async function MainBlog() {
                     </a>
                   </div>
                 </div>
+                
               ))}
 
               {/* paggination starts here */}
@@ -80,7 +84,7 @@ async function MainBlog() {
                     {categories.map((category: any) => (
                       <li key={category._id}>
                         <a href={`/blog/category/${category.slug.current}`}>
-                          {category.title.trim() || 'No Category Title'}
+                          {category.title.trim() || "No Category Title"}
                         </a>
                       </li>
                     ))}
@@ -94,8 +98,8 @@ async function MainBlog() {
                         <div className="media-img">
                           <a href={`/blog/${post.slug.current}`}>
                             <img
-                              src={urlForImage(post.mainImage)?.url() || ''}
-                              alt={post.title || ''}
+                              src={urlForImage(post.mainImage)?.url() || ""}
+                              alt={post.title || ""}
                             />
                           </a>
                         </div>
@@ -105,16 +109,19 @@ async function MainBlog() {
                               className="text-inherit"
                               href={`/blog/${post.slug.current}`}
                             >
-                              {post.title || ''}
+                              {post.title || ""}
                             </a>
                           </h4>
                           <div className="recent-post-meta">
                             <a href={`/blog/${post.slug.current}`}>
                               <i className="fal fa-calendar"></i>
-                              {new Date(post.publishedAt)?.toLocaleDateString() || ''}
+                              {new Date(
+                                post.publishedAt
+                              )?.toLocaleDateString() || ""}
                             </a>
                           </div>
                         </div>
+                        
                       </div>
                     ))}
                   </div>

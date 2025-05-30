@@ -19,7 +19,7 @@ export default async function BlogDetail({ params }: BlogDetailProps) {
   return (
     <div>
         {!blogsByCategory || blogsByCategory.length === 0 ? (
-        <Breadcumb title="No Blogs" subtitle="No Blogs Found In This Category" />
+        <Breadcumb title="No Blogs Found In This Category" subtitle="No Blog's" />
     ): (
         <div>
       <section className="th-blog-wrapper space-top space-extra-bottom">
