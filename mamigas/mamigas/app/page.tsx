@@ -12,22 +12,25 @@ import FAQ from "@/components/FAQ";
 import FAQ2 from "@/components/FAQ2";
 import Testimonials from "@/components/Testimonials";
 import Blogs from "@/components/Blogs";
+import { Toaster, toast } from "sonner";
+
 
 export default function Home() {
   return (
     <div>
-      <Hero/>
-      <About/>
-      <Services/>
-      <Cta/>
-      <WhyChoose/>
-      <Counter/>
+      <Hero />
+      <About />
+      <Services />
+      <Cta />
+      <WhyChoose />
+      <Counter />
       {/* <Partners/> */}
-      <WorkingHours/>
-      <Process/>
-      <FAQ/>
-      <Testimonials/>
-      <Blogs/>
+      <Process />
+      <FAQ />
+      <Testimonials />
+      <Blogs />
+      <WorkingHours />
+      
     </div>
   );
 }

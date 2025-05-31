@@ -102,13 +102,22 @@ function Header() {
                         <a href="/products">Products</a>
                       </li>
                       <li>
-                        <a href="/appointment">Appointment</a>
-                      </li>
-                      <li>
                         <a href="/blog">Blog</a>
                       </li>
                       <li>
                         <a href="/contact">Contact</a>
+                      </li>
+                      <li>
+                        <a href="/get-a-quote">Get a Quote</a>
+                      </li>
+                      <li>
+                          <button
+                            type="button"
+                            className="icon-btn sideMenuCart"
+                          >
+                            <span className="badge">5</span>
+                            <i className="far fa-cart-shopping"></i>
+                          </button>
                       </li>
                     </ul>
                   </nav>
@@ -122,6 +131,10 @@ function Header() {
                       className="th-menu-toggle"
                     >
                       <i className="far fa-bars"></i>
+                    </button>
+                    <button type="button" className="icon-btn sideMenuCart">
+                      <span className="badge">5</span>
+                      <i className="far fa-cart-shopping"></i>
                     </button>
                   </div>
                 )}
@@ -201,6 +214,11 @@ function Header() {
                     name: "Contact",
                     href: "/contact",
                     id: 7,
+                  },
+                  {
+                    name: "Get a Quote",
+                    href: "/get-a-quote",
+                    id: 8,
                   },
                 ].map((item) => (
                   <div

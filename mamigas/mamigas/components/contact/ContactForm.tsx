@@ -1,15 +1,56 @@
-import React from 'react'
+"use client";
+import React, { useState } from "react";
+import axios from "axios";
+import { Toaster, toast } from "sonner";
 
 function ContactForm() {
+  const [form, setForm] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    message: "",
+  });
+  const [loading, setLoading] = useState(false);
+
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const { name, value } = e.target;
+    setForm((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setLoading(true);
+
+    try {
+      const res = await axios.post("/api/send-email", {
+        name: form.name,
+        email: form.email,
+        message: `${form.message}\n\nPhone: ${form.phone}`,
+      });
+
+      if (res.status === 200) {
+        toast.success("Email sent successfully 😊");
+        setForm({ name: "", email: "", phone: "", message: "" });
+      } else {
+        toast.error("Something went wrong 😔");
+      }
+    } catch (err) {
+      console.error(err);
+      toast.error("Something went wrong 😔");
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <div>
       <div className="space-bottom">
         <div className="container">
           <form
-            action="https://html.themeholy.com/mediax/demo/mail.php"
-            method="POST"
-            className="contact-form ajax-contact"
-            // data-bg-src="assets/img/bg/contact_form_bg.png"
+          onSubmit={handleSubmit}
+            className="contact-form "
             style={{
               backgroundImage: "url('/assets/img/bg/contact_form_bg.png')",
             }}
@@ -22,8 +63,10 @@ function ContactForm() {
                     type="text"
                     className="form-control"
                     name="name"
-                    id="name"
+                    value={form.name}
+                    onChange={handleChange}
                     placeholder="Your Name"
+                    required
                   />
                   <i className="fal fa-user"></i>
                 </div>
@@ -32,8 +75,10 @@ function ContactForm() {
                     type="email"
                     className="form-control"
                     name="email"
-                    id="email"
+                    value={form.email}
+                    onChange={handleChange}
                     placeholder="Email Address"
+                    required
                   />
                   <i className="fal fa-envelope"></i>
                 </div>
@@ -41,43 +86,34 @@ function ContactForm() {
                   <input
                     type="tel"
                     className="form-control"
-                    name="number"
-                    id="number"
+                    name="phone"
+                    value={form.phone}
+                    onChange={handleChange}
                     placeholder="Phone Number"
                   />
                   <i className="fal fa-phone"></i>
                 </div>
-                {/***** ******************************** select option */}
-                {/* <div className="form-group col-12">
-                  <select name="subject" id="subject" className="form-select">
-                    <option
-                      value=""
-                      disabled="disabled"
-                      selected="selected"
-                      hidden
-                    >
-                      Select Subject
-                    </option>
-                    <option value="Make Appointment">Make Appointment</option>
-                    <option value="General Inquiry">General Inquiry</option>
-                    <option value="Medicine Help">Medicine Help</option>
-                    <option value="Consultation">Consultation</option>
-                  </select>
-                  <i className="fal fa-chevron-down"></i>
-                </div> */}
                 <div className="form-group col-12">
                   <textarea
                     name="message"
-                    id="message"
                     cols={30}
                     rows={3}
                     className="form-control"
+                    value={form.message}
+                    onChange={handleChange}
                     placeholder="Type..."
+                    required
                   ></textarea>
                   <i className="fal fa-pencil"></i>
                 </div>
                 <div className="form-btn col-12">
-                  <button className="th-btn btn-fw">BOOK AN APPOINTMENT</button>
+                  <button
+                    type="submit"
+                    className="th-btn btn-fw"
+                    disabled={loading}
+                  >
+                    {loading ? "Sending..." : "SEND"}
+                  </button>
                 </div>
               </div>
               <p className="form-messages mb-0 mt-3"></p>
@@ -85,8 +121,9 @@ function ContactForm() {
           </form>
         </div>
       </div>
+      <Toaster position="bottom-right" richColors />
     </div>
   );
 }
 
-export default ContactForm
+export default ContactForm;

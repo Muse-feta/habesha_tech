@@ -1,5 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
+import { useCart } from "react-use-cart";
 
 type Product = {
   _id: string;
@@ -257,7 +258,7 @@ function Product({ products, productsCategory }: ProductProps) {
                         <i className="far fa-chevron-down"></i>
                       </button>
                     </div>
-                    <button className="th-btn">Add to Cart</button>
+                    <button className="th-btn">Get a quote</button>
                   </div>
                   <div className="product_meta">
                     <span className="sku_wrapper">
