@@ -1,6 +1,7 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import { useCart } from "react-use-cart";
+import QuantityInput from "../QuantityInput";
 
 type Product = {
   _id: string;
@@ -35,6 +36,8 @@ function Product({ products, productsCategory }: ProductProps) {
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 12;
+  const { addItem, items } = useCart();
+
 
   const filteredProducts =
     selectedCategory === "all"
@@ -240,25 +243,31 @@ function Product({ products, productsCategory }: ProductProps) {
                     </p>
                   </div>
                   <div className="actions">
-                    <div className="quantity">
-                      <input
-                        type="number"
-                        className="qty-input"
-                        step={1}
-                        min={1}
-                        max={100}
-                        name="quantity"
-                        defaultValue={1}
-                        title="Qty"
-                      />
-                      <button className="quantity-plus qty-btn">
-                        <i className="far fa-chevron-up"></i>
-                      </button>
-                      <button className="quantity-minus qty-btn">
-                        <i className="far fa-chevron-down"></i>
-                      </button>
-                    </div>
-                    <button className="th-btn">Get a quote</button>
+                    {(() => {
+                      const itemInCart = items.find(
+                        (item) => item.id === selectedProduct._id
+                      );
+                      return itemInCart ? (
+                        <div className="cart-item">
+                          <QuantityInput item={itemInCart} />
+                        </div>
+                      ) : null;
+                    })()}
+                    <button
+                      className="th-btn"
+                      onClick={() =>
+                        selectedProduct &&
+                        addItem({
+                          id: selectedProduct._id,
+                          price: selectedProduct.price,
+                          name: selectedProduct.title,
+                          image: selectedProduct.imageUrl,
+                          slug: selectedProduct.slug.current,
+                        })
+                      }
+                    >
+                      Get a quote
+                    </button>
                   </div>
                   <div className="product_meta">
                     <span className="sku_wrapper">

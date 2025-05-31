@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import "@/assets/css/app.min.css";
 import "@/assets/css/style.css";
 import "@/assets/css/fontawesome.min.css";
+import CartButton from "./CartButton";
 
 function Header() {
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -111,13 +112,7 @@ function Header() {
                         <a href="/get-a-quote">Get a Quote</a>
                       </li>
                       <li>
-                          <button
-                            type="button"
-                            className="icon-btn sideMenuCart"
-                          >
-                            <span className="badge">5</span>
-                            <i className="far fa-cart-shopping"></i>
-                          </button>
+                        <CartButton />
                       </li>
                     </ul>
                   </nav>
@@ -132,10 +127,7 @@ function Header() {
                     >
                       <i className="far fa-bars"></i>
                     </button>
-                    <button type="button" className="icon-btn sideMenuCart">
-                      <span className="badge">5</span>
-                      <i className="far fa-cart-shopping"></i>
-                    </button>
+                    <CartButton />
                   </div>
                 )}
               </div>
