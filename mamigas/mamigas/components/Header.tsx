@@ -108,9 +108,9 @@ function Header() {
                       <li>
                         <a href="/contact">Contact</a>
                       </li>
-                      <li>
+                      {/* <li>
                         <a href="/get-a-quote">Get a Quote</a>
-                      </li>
+                      </li> */}
                       <li>
                         <CartButton />
                       </li>
@@ -207,11 +207,11 @@ function Header() {
                     href: "/contact",
                     id: 7,
                   },
-                  {
-                    name: "Get a Quote",
-                    href: "/get-a-quote",
-                    id: 8,
-                  },
+                  // {
+                  //   name: "Get a Quote",
+                  //   href: "/get-a-quote",
+                  //   id: 8,
+                  // },
                 ].map((item) => (
                   <div
                     key={item.id}

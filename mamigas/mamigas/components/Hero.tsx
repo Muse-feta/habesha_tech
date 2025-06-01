@@ -39,7 +39,7 @@ function Hero() {
           <div className="hero-img">
             <img
               className="h-auto w-auto"
-              src="assets/img/mamigas/mamigas_hero2-removebg-preview.png"
+              src="assets/img/hero/drugs-hero-mamigas.png"
               alt="Image"
             />
           </div>

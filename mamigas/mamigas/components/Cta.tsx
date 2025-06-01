@@ -24,11 +24,11 @@ function Cta() {
                 </p>
               </div>
               <div className="btn-group justify-content-center">
-                <a href="contact.html" className="th-btn shadow-1">
-                  Request Service
+                <a href="/products" className="th-btn shadow-1">
+                  Our Products
                 </a>
-                <a href="contact.html" className="th-btn style2 shadow-1">
-                  Get Free Consulting
+                <a href="/contact" className="th-btn style2 shadow-1">
+                  Contact Us
                 </a>
               </div>
             </div>
