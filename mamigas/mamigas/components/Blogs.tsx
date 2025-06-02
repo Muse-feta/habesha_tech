@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import React from 'react'
 import { getBlogPosts, getAllProducts } from "@/lib/sanity/fetchQueries";
 import { urlForImage } from "@/lib/sanity/image"; 
@@ -5,7 +7,7 @@ import { urlForImage } from "@/lib/sanity/image";
 async function Blogs() {
     const blogPosts = await getBlogPosts();
     const products = await getAllProducts();
-    console.log(products);
+    // console.log(products);
   
   return (
     <div>

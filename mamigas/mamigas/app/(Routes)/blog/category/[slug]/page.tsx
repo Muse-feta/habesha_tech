@@ -1,4 +1,5 @@
 // app/blog/[slug]/page.tsx
+export const dynamic = "force-dynamic";
 import Breadcumb from "@/components/Breadcumb";
 import { getBlogsByCategory, getCategories, getRecentPosts, getSingleBlog } from "@/lib/sanity/fetchQueries";
 import { urlForImage } from "@/lib/sanity/image";

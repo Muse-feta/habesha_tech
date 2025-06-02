@@ -1,3 +1,4 @@
+export const dynamic = "force-dynamic";
 import About from "@/components/About";
 import Counter from "@/components/Counter";
 import Cta from "@/components/Cta";
@@ -14,7 +15,6 @@ import Testimonials from "@/components/Testimonials";
 import Blogs from "@/components/Blogs";
 import { Toaster, toast } from "sonner";
 
-
 export default function Home() {
   return (
     <div>
@@ -30,7 +30,6 @@ export default function Home() {
       <Testimonials />
       <Blogs />
       <WorkingHours />
-      
     </div>
   );
 }

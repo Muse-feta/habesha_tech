@@ -1,6 +1,12 @@
+export const dynamic = "force-dynamic";
+
 import React from "react";
-import { getBlogPosts, getCategories, getRecentPosts } from "@/lib/sanity/fetchQueries";
-import { urlForImage } from '@/lib/sanity/image'; 
+import {
+  getBlogPosts,
+  getCategories,
+  getRecentPosts,
+} from "@/lib/sanity/fetchQueries";
+import { urlForImage } from "@/lib/sanity/image";
 import Script from "next/script";
 
 async function MainBlog() {
@@ -52,7 +58,6 @@ async function MainBlog() {
                     </a>
                   </div>
                 </div>
-                
               ))}
 
               {/* paggination starts here */}
@@ -121,7 +126,6 @@ async function MainBlog() {
                             </a>
                           </div>
                         </div>
-                        
                       </div>
                     ))}
                   </div>

@@ -1,6 +1,11 @@
+export const dynamic = "force-dynamic";
 import Breadcumb from "@/components/Breadcumb";
 import Product from "@/components/product/Product";
-import { getAllProducts, getAllProdutsCategories, getProductsByCategory } from "@/lib/sanity/fetchQueries";
+import {
+  getAllProducts,
+  getAllProdutsCategories,
+  getProductsByCategory,
+} from "@/lib/sanity/fetchQueries";
 import Script from "next/script";
 import React from "react";
 

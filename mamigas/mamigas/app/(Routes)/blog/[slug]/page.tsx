@@ -1,15 +1,20 @@
-// app/blog/[slug]/page.tsx
+export const dynamic = "force-dynamic";
+import { Metadata } from "next";
 import Breadcumb from "@/components/Breadcumb";
 import { getSingleBlog } from "@/lib/sanity/fetchQueries";
 import { urlForImage } from "@/lib/sanity/image";
 import { PortableText } from "@portabletext/react";
 import Script from "next/script";
 
-interface BlogDetailProps {
-  params: { slug: string };
+// this is automatically inferred but you can define explicitly
+interface PageProps {
+  params: {
+    slug: string;
+  };
 }
 
-export default async function BlogDetail({ params }: BlogDetailProps) {
+// ✅ Page Component
+export default async function BlogDetail({ params }: PageProps) {
   const post = await getSingleBlog(params.slug);
 
   if (!post) return <div>Blog not found.</div>;
@@ -20,7 +25,6 @@ export default async function BlogDetail({ params }: BlogDetailProps) {
         <Breadcumb title={post.title} subtitle="Blog Detail" />
       </div>
       <div className="container space-y-6 py-10">
-        {/* <h1 className="text-3xl font-bold">{post.title}</h1> */}
         <div className="blog-meta">
           <a className="author" href={`/blog/${post.slug.current}`}>
             <i className="fal fa-user"></i>By Mamigas
